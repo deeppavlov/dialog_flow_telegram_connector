@@ -6,6 +6,7 @@ This module contains several variations of the `RequestProvider` class that can 
 to combine :py:class:`~df_telegram_connector.connector.TelegramConnector` 
 together with the `df_runner` add-on.
 """
+import traceback
 from functools import partial
 from typing import Any, Optional
 
@@ -104,6 +105,7 @@ class PollingRequestProvider(BaseRequestProvider):
                     self.handle_update(update, runner=runner)
 
             except Exception as e:
+                traceback.print_exc()
                 print(e)
                 self.bot._TeleBot__stop_polling.set()
                 break

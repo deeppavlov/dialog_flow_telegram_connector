@@ -10,10 +10,16 @@ from argparse import ArgumentError
 from typing import Any, List, Optional, Union
 from pathlib import Path
 
+import telebot.types
+from df_engine.core import Context
 from telebot import types
 from pydantic import BaseModel, ValidationError, validator, root_validator, Field, Extra, FilePath, HttpUrl, Required
 
 import df_generics
+
+
+Context.add_json_encoder(telebot.types.JsonSerializable, lambda n: n.to_dict())
+Context.add_json_encoder(telebot.types.JsonDeserializable, lambda n: n.__dict__)
 
 
 class AdapterModel(BaseModel):
