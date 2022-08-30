@@ -62,7 +62,7 @@ setup(
     packages=find_packages(where="."),  # Required
     include_package_data=True,
     python_requires=">=3.6, <4",
-    install_requires=requirements,
+    install_requires=['df_engine @ git+https://github.com/EvgeniyEgoorov/dialog_flow_engine.git@fd8a4e0'] + requirements,
     test_suite="tests",
     tests_require=test_requirements,
 )
